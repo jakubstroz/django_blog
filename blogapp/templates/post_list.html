@@ -1,0 +1,8 @@
+<h1> POSTS: </h1>
+
+{% for object in object_list %}
+    <div class="">
+        <a href= "http://127.0.0.1:8000/post/{{object.slug}}"> {{object}}  </a>
+        
+    </div>
+{% endfor %}
