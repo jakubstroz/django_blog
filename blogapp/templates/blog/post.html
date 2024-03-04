@@ -4,9 +4,9 @@
 {% endblock %}
 {% block content %}
     
-    <a href="{% url 'blogapp:post_list' %}"> Back to list </a>
-    <a href="{% url 'blogapp:edit_post' object.slug %}"> Edit post </a>
-    <a href="{% url 'blogapp:delete_post' object.slug %}"> Delete post </a>
+    <a href="{% url 'blogapp:blog_post_list' %}"> Back to list </a>
+    <a href="{% url 'blogapp:blog_edit_post' object.slug %}"> Edit post </a>
+    <a href="{% url 'blogapp:blog_delete_post' object.slug %}"> Delete post </a>
     <h1> {{ object.title }} </h1>
 
     {{ object.subtitle }}

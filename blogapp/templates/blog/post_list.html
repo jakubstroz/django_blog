@@ -4,12 +4,12 @@
 {% endblock %}
 {% block content %}
 <h1> POSTS: </h1>
-<a href="{% url 'blogapp:create_post' %}"> Create post </a>
+<a href="{% url 'blogapp:blog_create_post' %}"> Create post </a>
 <ul>
     {% for object in page_obj %}
         <li>
             <div class="">
-                <a href= "http://127.0.0.1:8000/post/{{object.slug}}"> 
+                <a href= "http://127.0.0.1:8000/blog/{{object.slug}}"> 
                 {{object | capfirst}}  
                 </a>
                 {{object.body | linebreaks | truncatewords:15}}
