@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 <h1> POSTS: </h1>
-
+<a href="{% url 'blogapp:create_post' %}"> Create post </a>
 <ul>
     {% for object in object_list %}
         <li>

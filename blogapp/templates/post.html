@@ -3,6 +3,10 @@
     {{ post_detail.title }}
 {% endblock %}
 {% block content %}
+    
+    <a href="{% url 'blogapp:post_list' %}"> Back to list </a>
+    <a href="{% url 'blogapp:edit_post' post_detail.slug %}"> Edit post </a>
+    <a href="{% url 'blogapp:delete_post' post_detail.slug %}"> Delete post </a>
     <h1> {{ post_detail.title }} </h1>
 
     {{ post_detail.subtitle }}
