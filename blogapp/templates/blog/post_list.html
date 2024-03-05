@@ -1,39 +1,84 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
     Post List
 {% endblock %}
 {% block content %}
-<h1> POSTS: </h1>
-<a href="{% url 'blogapp:blog_create_post' %}"> Create post </a>
-<ul>
-    {% for object in page_obj %}
-        <li>
-            <div class="">
-                <a href= "http://127.0.0.1:8000/blog/{{object.slug}}"> 
-                {{object | capfirst}}  
-                </a>
-                {{object.body | linebreaks | truncatewords:15}}
+
+
+<!-- Page Header-->
+        <header class="masthead" style="background-image: url('/media/home-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>POSTS:</h1>
+                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </li>
-    {% endfor %}
-</ul>
+        </header>
 
-<div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+<!-- Main Content-->
+
+{% if user.is_authenticated %}
+    <div class="card my-5 py-4 text=center">
+        <div>
+            
+            <a href="{% url 'blogapp:blog_create_post' %}" class="btn btn-primary"> Create post </a>
+            
+        </div>
+    </div>
+{% endif %}
+
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+
+
+                {% for object in page_obj %}
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a href= "http://127.0.0.1:8000/blog/{{object.slug}}">
+                            <h2 class="post-title">{{object | capfirst}}</h2>
+                            <h3> {{object.body | linebreaks | truncatewords:20}} </h3>
+                        </a>
+                        <p class="post-meta">
+                            Posted by
+                            <a href="#!">{{ object.created_by }}</a>
+                            on {{ object.update_date }}
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4" />
+
+
+                {% endfor %}
+                    
+                    <!-- Pager-->
+                        <div class="pagination">
+                        <span class="step-links">
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo; first</a>
+                                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                            {% endif %}
+
+                            <span class="current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                            </span>
+
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
 
 {% endblock %}

@@ -1,14 +1,38 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
     Create post
 {% endblock %}
 {% block content %}
+    <header class="masthead" style="background-image: url('/media/contact-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="page-heading">
+                        <h1> Post {{ title }} </h1>
+                        <span class="subheading">Add post below</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+<!-- Main Content-->
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="my-5">
+                           
+                            <form action=" " method="POST">
+                                {{ form.as_p }}
+                                {%  csrf_token %}
+                                <input type="submit" value="{{ title }}">
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-    <h1> Post {{ title }} </h1>
-    <h2> Add post below </h2>
-    <form action=" " method="POST">
-        {{ form.as_p }}
-        {%  csrf_token %}
-        <input type="submit" value="{{ title }}">
-    </form>
 {% endblock %}
