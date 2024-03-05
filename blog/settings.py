@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 
     #own:
     'blogapp',
+    'common',
 ]
 
 MIDDLEWARE = [
